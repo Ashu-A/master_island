@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 from pandasai.llm.openai import OpenAI
@@ -10,7 +9,8 @@ from specklepy.api import operations
 import plotly.express as px
 import plotly.express as px
 from pandasai import SmartDataframe
-
+from dotenv import load_dotenv
+load_dotenv()
 
 def chat_speckle(df, prompt):
     api_key = os.getenv("OPENAI_API_KEY")
