@@ -119,7 +119,7 @@ if commit is not None and hasattr(commit, 'referencedObject'):
     commit_data = operations.receive(obj_id, transport)
 else:
     print("Commit object is None or does not have a 'referencedObject' attribute")
-obj_id = commit.referencedObject
+# obj_id = commit.referencedObject
 # receive objects from commit
 commit_data = operations.receive(obj_id, transport)
 
