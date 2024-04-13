@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 from pandasai.llm.openai import OpenAI
-
+import os
 from specklepy.api.wrapper import StreamWrapper
 from specklepy.api.client import SpeckleClient
 from specklepy.api.credentials import get_account_from_token
@@ -13,7 +13,8 @@ from pandasai import SmartDataframe
 
 
 def chat_speckle(df, prompt):
-    llm = OpenAI(api_token="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")
+    api_key = os.getenv("OPENAI_API_KEY")
+    llm = OpenAI(api_token=api_key)
     # pandas_ai = PandasAI(llm, conversational=False)
     df = SmartDataframe(df, config={"llm": llm})
     result = df.chat(prompt)
@@ -143,7 +144,7 @@ with data:
 
     with col2:
         st.info("⬇chatSpeckle⬇")
-        OPENAI_API_KEY = st.text_input('OpenAI key', "sk-...vDlY")
+        OPENAI_API_KEY = st.text_input('OpenAI key', "enter your key here")
 
         input_text = st.text_area('Enter your query')
         if input_text is not None:
