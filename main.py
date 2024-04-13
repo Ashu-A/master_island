@@ -121,7 +121,7 @@ else:
     print("Commit object is None or does not have a 'referencedObject' attribute")
 # obj_id = commit.referencedObject
 # receive objects from commit
-commit_data = operations.receive(obj_id, transport)
+# commit_data = operations.receive(obj_id, transport)
 
 with input:
     selected_category = st.selectbox("Select category", commit_data.get_dynamic_member_names())
