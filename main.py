@@ -109,6 +109,16 @@ transport = wrapper.get_transport()
 # get speckle commit
 commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
 # get object id from commit
+# get speckle commit
+commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
+
+if commit is not None and hasattr(commit, 'referencedObject'):
+    # get object id from commit
+    obj_id = commit.referencedObject
+    # receive objects from commit
+    commit_data = operations.receive(obj_id, transport)
+else:
+    print("Commit object is None or does not have a 'referencedObject' attribute")
 obj_id = commit.referencedObject
 # receive objects from commit
 commit_data = operations.receive(obj_id, transport)
