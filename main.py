@@ -1,3 +1,4 @@
+
 import streamlit as st
 import pandas as pd
 from pandasai.llm.openai import OpenAI
@@ -9,12 +10,11 @@ from specklepy.api import operations
 import plotly.express as px
 import plotly.express as px
 from pandasai import SmartDataframe
-from dotenv import load_dotenv
-load_dotenv()
+
 
 def chat_speckle(df, prompt):
-    api_key = os.getenv("OPENAI_API_KEY")
-    llm = OpenAI(api_token=api_key)
+    # llm = OpenAI(api_token="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")
+    llm = OpenAI(api_token="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")
     # pandas_ai = PandasAI(llm, conversational=False)
     df = SmartDataframe(df, config={"llm": llm})
     result = df.chat(prompt)
@@ -144,7 +144,7 @@ with data:
 
     with col2:
         st.info("⬇chatSpeckle⬇")
-        OPENAI_API_KEY = st.text_input('OpenAI key', "enter your key here")
+        OPENAI_API_KEY = st.text_input('OpenAI key', "sk-...vDlY")
 
         input_text = st.text_area('Enter your query')
         if input_text is not None:

@@ -714,3 +714,824 @@ result = {'type': 'string', 'value': f'The most used material is {most_used_mate
 2024-04-13 21:30:09 [INFO] Executing Step 7: ResultValidation
 2024-04-13 21:30:09 [INFO] Answer: {'type': 'string', 'value': 'The most used material is .'}
 2024-04-13 21:30:09 [INFO] Executing Step 8: ResultParsing
+2024-04-13 23:43:48 [INFO] Question: summary of the data 
+2024-04-13 23:43:48 [INFO] Running PandasAI with openai LLM...
+2024-04-13 23:43:48 [INFO] Prompt ID: a1ecbe8d-f200-4ba1-9115-34eb5100643e
+2024-04-13 23:43:48 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-13 23:43:48 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-13 23:43:48 [INFO] Executing Step 1: CacheLookup
+2024-04-13 23:43:48 [INFO] Executing Step 2: PromptGeneration
+2024-04-13 23:43:48 [INFO] Using prompt: <dataframe>
+dfs[0]:151x6
+Category,Family Name,Model,Transparency,Type Name,Workset
+-2000700,,,90,,10
+-2000700,,,50,,10
+-2000700,,,0,,10
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ summary of the data 
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-04-13 23:43:48 [INFO] Executing Step 3: CodeGenerator
+2024-04-13 23:43:49 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-13 23:43:49 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:151x6
+Category,Family Name,Model,Transparency,Type Name,Workset
+-2000700,,,90,,10
+-2000700,,,50,,10
+-2000700,,,0,,10
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ summary of the data 
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-04-13 23:43:49 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+summary_data = []
+for df in dfs:
+    summary_data.append(df.describe())
+
+# Declare result var: 
+result = { "type": "dataframe", "value": pd.concat(summary_data) }
+            ```
+            
+2024-04-13 23:43:49 [INFO] Executing Step 4: CachePopulation
+2024-04-13 23:43:50 [INFO] Executing Step 5: CodeCleaning
+2024-04-13 23:43:50 [INFO] 
+Code running:
+```
+summary_data = []
+for df in dfs:
+    summary_data.append(df.describe())
+result = {'type': 'dataframe', 'value': pd.concat(summary_data)}
+        ```
+2024-04-13 23:43:50 [INFO] Executing Step 6: CodeExecution
+2024-04-13 23:43:50 [INFO] Executing Step 7: ResultValidation
+2024-04-13 23:43:50 [INFO] Answer: {'type': 'dataframe', 'value':        Transparency  Workset
+count    151.000000    151.0
+mean      14.039735     10.0
+std       26.750173      0.0
+min        0.000000     10.0
+25%        0.000000     10.0
+50%        0.000000     10.0
+75%        0.000000     10.0
+max      100.000000     10.0}
+2024-04-13 23:43:50 [INFO] Executing Step 8: ResultParsing
+2024-04-13 23:46:08 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:08 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:08 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:09 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:09 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:46:09 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:46:09 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-13 23:46:10 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-13 23:46:10 [INFO] >>> {"query": "query StreamSearch($search_query: String!, $limit: Int!, $branch_limit: Int!, $commit_limit: Int!) {\n  streams(query: $search_query, limit: $limit) {\n    items {\n      id\n      name\n      role\n      description\n      isPublic\n      createdAt\n      updatedAt\n      collaborators {\n        id\n        name\n        role\n        avatar\n      }\n      branches(limit: $branch_limit) {\n        totalCount\n        cursor\n        items {\n          id\n          name\n          description\n          commits(limit: $commit_limit) {\n            totalCount\n            cursor\n            items {\n              id\n              referencedObject\n              message\n              authorName\n              authorId\n              createdAt\n            }\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"search_query": "mangrove stru 2", "limit": 25, "branch_limit": 10, "commit_limit": 10}}
+2024-04-13 23:46:10 [INFO] <<< {"data":{"streams":{"items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","description":"","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner","avatar":null}],"branches":{"totalCount":1,"cursor":"2024-03-15T04:38:52.679Z","items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"cursor":"2024-03-15T04:38:52.672Z","items":[{"id":"91bcd29b51","referencedObject":"2287296623f4fc275f768de1d6667e6d","message":"Sent 1770 objects from Revit2024.","authorName":"Ashish Ranjan","authorId":"c0b42d5776","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}]}}}
+
+2024-04-13 23:46:10 [INFO] >>> {"query": "query BranchesGet($stream_id: String!, $branches_limit: Int!, $commits_limit: Int!) {\n  stream(id: $stream_id) {\n    branches(limit: $branches_limit) {\n      items {\n        id\n        name\n        description\n        commits(limit: $commits_limit) {\n          totalCount\n          items {\n            id\n            message\n            referencedObject\n            sourceApplication\n            parents\n            authorId\n            authorName\n            branchName\n            createdAt\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "branches_limit": 10, "commits_limit": 10}}
+2024-04-13 23:46:11 [INFO] <<< {"data":{"stream":{"branches":{"items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","sourceApplication":"Revit2024","parents":null,"authorId":"c0b42d5776","authorName":"Ashish Ranjan","branchName":"main","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}}}
+
+2024-04-13 23:46:11 [INFO] >>> {"query": "query Commits($stream_id: String!, $limit: Int!) {\n  stream(id: $stream_id) {\n    commits(limit: $limit) {\n      items {\n        id\n        message\n        referencedObject\n        authorName\n        authorId\n        authorName\n        authorAvatar\n        branchName\n        createdAt\n        sourceApplication\n        totalChildrenCount\n        parents\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "limit": 100}}
+2024-04-13 23:46:11 [INFO] <<< {"data":{"stream":{"commits":{"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","authorName":"Ashish Ranjan","authorId":"c0b42d5776","authorAvatar":null,"branchName":"main","createdAt":"2024-03-15T04:38:52.672Z","sourceApplication":"Revit2024","totalChildrenCount":4411,"parents":null}]}}}}
+
+2024-04-13 23:46:11 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:12 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:12 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:12 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:12 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:46:13 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:46:13 [INFO] >>> {"query": "query Commit($stream_id: String!, $commit_id: String!) {\n  stream(id: $stream_id) {\n    commit(id: $commit_id) {\n      id\n      message\n      referencedObject\n      authorId\n      authorName\n      authorAvatar\n      branchName\n      createdAt\n      sourceApplication\n      totalChildrenCount\n      parents\n    }\n  }\n}", "variables": {"stream_id": "06564bda95", "commit_id": "f308ed526e"}}
+2024-04-13 23:46:13 [INFO] <<< {"data":{"stream":{"commit":{"id":"f308ed526e","message":"Sent 3480 objects from Revit2024.","referencedObject":"d12ac77d5c7324b942cf52bd8b50f14a","authorId":"c0b42d5776","authorName":"Ashish Ranjan","authorAvatar":null,"branchName":"main","createdAt":"2024-03-08T03:46:31.691Z","sourceApplication":"Revit2024","totalChildrenCount":6885,"parents":null}}}}
+
+2024-04-13 23:46:16 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:16 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:16 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:16 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:16 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:46:17 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:46:17 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-13 23:46:17 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-13 23:46:17 [INFO] >>> {"query": "query StreamSearch($search_query: String!, $limit: Int!, $branch_limit: Int!, $commit_limit: Int!) {\n  streams(query: $search_query, limit: $limit) {\n    items {\n      id\n      name\n      role\n      description\n      isPublic\n      createdAt\n      updatedAt\n      collaborators {\n        id\n        name\n        role\n        avatar\n      }\n      branches(limit: $branch_limit) {\n        totalCount\n        cursor\n        items {\n          id\n          name\n          description\n          commits(limit: $commit_limit) {\n            totalCount\n            cursor\n            items {\n              id\n              referencedObject\n              message\n              authorName\n              authorId\n              createdAt\n            }\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"search_query": "mangrove stru 2", "limit": 25, "branch_limit": 10, "commit_limit": 10}}
+2024-04-13 23:46:18 [INFO] <<< {"data":{"streams":{"items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","description":"","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner","avatar":null}],"branches":{"totalCount":1,"cursor":"2024-03-15T04:38:52.679Z","items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"cursor":"2024-03-15T04:38:52.672Z","items":[{"id":"91bcd29b51","referencedObject":"2287296623f4fc275f768de1d6667e6d","message":"Sent 1770 objects from Revit2024.","authorName":"Ashish Ranjan","authorId":"c0b42d5776","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}]}}}
+
+2024-04-13 23:46:18 [INFO] >>> {"query": "query BranchesGet($stream_id: String!, $branches_limit: Int!, $commits_limit: Int!) {\n  stream(id: $stream_id) {\n    branches(limit: $branches_limit) {\n      items {\n        id\n        name\n        description\n        commits(limit: $commits_limit) {\n          totalCount\n          items {\n            id\n            message\n            referencedObject\n            sourceApplication\n            parents\n            authorId\n            authorName\n            branchName\n            createdAt\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "branches_limit": 10, "commits_limit": 10}}
+2024-04-13 23:46:19 [INFO] <<< {"data":{"stream":{"branches":{"items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","sourceApplication":"Revit2024","parents":null,"authorId":"c0b42d5776","authorName":"Ashish Ranjan","branchName":"main","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}}}
+
+2024-04-13 23:46:19 [INFO] >>> {"query": "query Commits($stream_id: String!, $limit: Int!) {\n  stream(id: $stream_id) {\n    commits(limit: $limit) {\n      items {\n        id\n        message\n        referencedObject\n        authorName\n        authorId\n        authorName\n        authorAvatar\n        branchName\n        createdAt\n        sourceApplication\n        totalChildrenCount\n        parents\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "limit": 100}}
+2024-04-13 23:46:19 [INFO] <<< {"data":{"stream":{"commits":{"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","authorName":"Ashish Ranjan","authorId":"c0b42d5776","authorAvatar":null,"branchName":"main","createdAt":"2024-03-15T04:38:52.672Z","sourceApplication":"Revit2024","totalChildrenCount":4411,"parents":null}]}}}}
+
+2024-04-13 23:46:19 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:19 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:19 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:20 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:20 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:46:20 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:46:20 [INFO] >>> {"query": "query Commit($stream_id: String!, $commit_id: String!) {\n  stream(id: $stream_id) {\n    commit(id: $commit_id) {\n      id\n      message\n      referencedObject\n      authorId\n      authorName\n      authorAvatar\n      branchName\n      createdAt\n      sourceApplication\n      totalChildrenCount\n      parents\n    }\n  }\n}", "variables": {"stream_id": "06564bda95", "commit_id": "f308ed526e"}}
+2024-04-13 23:46:21 [INFO] <<< {"data":{"stream":{"commit":{"id":"f308ed526e","message":"Sent 3480 objects from Revit2024.","referencedObject":"d12ac77d5c7324b942cf52bd8b50f14a","authorId":"c0b42d5776","authorName":"Ashish Ranjan","authorAvatar":null,"branchName":"main","createdAt":"2024-03-08T03:46:31.691Z","sourceApplication":"Revit2024","totalChildrenCount":6885,"parents":null}}}}
+
+2024-04-13 23:46:29 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:29 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:29 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:30 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:30 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:46:30 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:46:30 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-13 23:46:31 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-13 23:46:31 [INFO] >>> {"query": "query StreamSearch($search_query: String!, $limit: Int!, $branch_limit: Int!, $commit_limit: Int!) {\n  streams(query: $search_query, limit: $limit) {\n    items {\n      id\n      name\n      role\n      description\n      isPublic\n      createdAt\n      updatedAt\n      collaborators {\n        id\n        name\n        role\n        avatar\n      }\n      branches(limit: $branch_limit) {\n        totalCount\n        cursor\n        items {\n          id\n          name\n          description\n          commits(limit: $commit_limit) {\n            totalCount\n            cursor\n            items {\n              id\n              referencedObject\n              message\n              authorName\n              authorId\n              createdAt\n            }\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"search_query": "mangrove stru 2", "limit": 25, "branch_limit": 10, "commit_limit": 10}}
+2024-04-13 23:46:31 [INFO] <<< {"data":{"streams":{"items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","description":"","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner","avatar":null}],"branches":{"totalCount":1,"cursor":"2024-03-15T04:38:52.679Z","items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"cursor":"2024-03-15T04:38:52.672Z","items":[{"id":"91bcd29b51","referencedObject":"2287296623f4fc275f768de1d6667e6d","message":"Sent 1770 objects from Revit2024.","authorName":"Ashish Ranjan","authorId":"c0b42d5776","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}]}}}
+
+2024-04-13 23:46:31 [INFO] >>> {"query": "query BranchesGet($stream_id: String!, $branches_limit: Int!, $commits_limit: Int!) {\n  stream(id: $stream_id) {\n    branches(limit: $branches_limit) {\n      items {\n        id\n        name\n        description\n        commits(limit: $commits_limit) {\n          totalCount\n          items {\n            id\n            message\n            referencedObject\n            sourceApplication\n            parents\n            authorId\n            authorName\n            branchName\n            createdAt\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "branches_limit": 10, "commits_limit": 10}}
+2024-04-13 23:46:32 [INFO] <<< {"data":{"stream":{"branches":{"items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","sourceApplication":"Revit2024","parents":null,"authorId":"c0b42d5776","authorName":"Ashish Ranjan","branchName":"main","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}}}
+
+2024-04-13 23:46:32 [INFO] >>> {"query": "query Commits($stream_id: String!, $limit: Int!) {\n  stream(id: $stream_id) {\n    commits(limit: $limit) {\n      items {\n        id\n        message\n        referencedObject\n        authorName\n        authorId\n        authorName\n        authorAvatar\n        branchName\n        createdAt\n        sourceApplication\n        totalChildrenCount\n        parents\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "limit": 100}}
+2024-04-13 23:46:32 [INFO] <<< {"data":{"stream":{"commits":{"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","authorName":"Ashish Ranjan","authorId":"c0b42d5776","authorAvatar":null,"branchName":"main","createdAt":"2024-03-15T04:38:52.672Z","sourceApplication":"Revit2024","totalChildrenCount":4411,"parents":null}]}}}}
+
+2024-04-13 23:46:32 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:33 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:33 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:33 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:33 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:46:34 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:46:34 [INFO] >>> {"query": "query Commit($stream_id: String!, $commit_id: String!) {\n  stream(id: $stream_id) {\n    commit(id: $commit_id) {\n      id\n      message\n      referencedObject\n      authorId\n      authorName\n      authorAvatar\n      branchName\n      createdAt\n      sourceApplication\n      totalChildrenCount\n      parents\n    }\n  }\n}", "variables": {"stream_id": "06564bda95", "commit_id": "f308ed526e"}}
+2024-04-13 23:46:34 [INFO] <<< {"data":{"stream":{"commit":{"id":"f308ed526e","message":"Sent 3480 objects from Revit2024.","referencedObject":"d12ac77d5c7324b942cf52bd8b50f14a","authorId":"c0b42d5776","authorName":"Ashish Ranjan","authorAvatar":null,"branchName":"main","createdAt":"2024-03-08T03:46:31.691Z","sourceApplication":"Revit2024","totalChildrenCount":6885,"parents":null}}}}
+
+2024-04-13 23:46:51 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:51 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:51 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:51 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:51 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:46:52 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:46:52 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-13 23:46:52 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-13 23:46:52 [INFO] >>> {"query": "query StreamSearch($search_query: String!, $limit: Int!, $branch_limit: Int!, $commit_limit: Int!) {\n  streams(query: $search_query, limit: $limit) {\n    items {\n      id\n      name\n      role\n      description\n      isPublic\n      createdAt\n      updatedAt\n      collaborators {\n        id\n        name\n        role\n        avatar\n      }\n      branches(limit: $branch_limit) {\n        totalCount\n        cursor\n        items {\n          id\n          name\n          description\n          commits(limit: $commit_limit) {\n            totalCount\n            cursor\n            items {\n              id\n              referencedObject\n              message\n              authorName\n              authorId\n              createdAt\n            }\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"search_query": "mangrove stru 2", "limit": 25, "branch_limit": 10, "commit_limit": 10}}
+2024-04-13 23:46:53 [INFO] <<< {"data":{"streams":{"items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","description":"","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner","avatar":null}],"branches":{"totalCount":1,"cursor":"2024-03-15T04:38:52.679Z","items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"cursor":"2024-03-15T04:38:52.672Z","items":[{"id":"91bcd29b51","referencedObject":"2287296623f4fc275f768de1d6667e6d","message":"Sent 1770 objects from Revit2024.","authorName":"Ashish Ranjan","authorId":"c0b42d5776","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}]}}}
+
+2024-04-13 23:46:53 [INFO] >>> {"query": "query BranchesGet($stream_id: String!, $branches_limit: Int!, $commits_limit: Int!) {\n  stream(id: $stream_id) {\n    branches(limit: $branches_limit) {\n      items {\n        id\n        name\n        description\n        commits(limit: $commits_limit) {\n          totalCount\n          items {\n            id\n            message\n            referencedObject\n            sourceApplication\n            parents\n            authorId\n            authorName\n            branchName\n            createdAt\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "branches_limit": 10, "commits_limit": 10}}
+2024-04-13 23:46:53 [INFO] <<< {"data":{"stream":{"branches":{"items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","sourceApplication":"Revit2024","parents":null,"authorId":"c0b42d5776","authorName":"Ashish Ranjan","branchName":"main","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}}}
+
+2024-04-13 23:46:53 [INFO] >>> {"query": "query Commits($stream_id: String!, $limit: Int!) {\n  stream(id: $stream_id) {\n    commits(limit: $limit) {\n      items {\n        id\n        message\n        referencedObject\n        authorName\n        authorId\n        authorName\n        authorAvatar\n        branchName\n        createdAt\n        sourceApplication\n        totalChildrenCount\n        parents\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "limit": 100}}
+2024-04-13 23:46:54 [INFO] <<< {"data":{"stream":{"commits":{"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","authorName":"Ashish Ranjan","authorId":"c0b42d5776","authorAvatar":null,"branchName":"main","createdAt":"2024-03-15T04:38:52.672Z","sourceApplication":"Revit2024","totalChildrenCount":4411,"parents":null}]}}}}
+
+2024-04-13 23:46:54 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:54 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:54 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:46:55 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:46:55 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:46:55 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:46:55 [INFO] >>> {"query": "query Commit($stream_id: String!, $commit_id: String!) {\n  stream(id: $stream_id) {\n    commit(id: $commit_id) {\n      id\n      message\n      referencedObject\n      authorId\n      authorName\n      authorAvatar\n      branchName\n      createdAt\n      sourceApplication\n      totalChildrenCount\n      parents\n    }\n  }\n}", "variables": {"stream_id": "06564bda95", "commit_id": "f308ed526e"}}
+2024-04-13 23:46:56 [INFO] <<< {"data":{"stream":{"commit":{"id":"f308ed526e","message":"Sent 3480 objects from Revit2024.","referencedObject":"d12ac77d5c7324b942cf52bd8b50f14a","authorId":"c0b42d5776","authorName":"Ashish Ranjan","authorAvatar":null,"branchName":"main","createdAt":"2024-03-08T03:46:31.691Z","sourceApplication":"Revit2024","totalChildrenCount":6885,"parents":null}}}}
+
+2024-04-13 23:47:08 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:47:08 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:47:08 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:47:08 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:47:08 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:47:08 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:47:09 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:47:09 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:47:09 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:47:09 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:47:09 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:47:09 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-13 23:47:09 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:47:09 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-13 23:47:10 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-13 23:47:10 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-13 23:47:10 [INFO] >>> {"query": "query StreamSearch($search_query: String!, $limit: Int!, $branch_limit: Int!, $commit_limit: Int!) {\n  streams(query: $search_query, limit: $limit) {\n    items {\n      id\n      name\n      role\n      description\n      isPublic\n      createdAt\n      updatedAt\n      collaborators {\n        id\n        name\n        role\n        avatar\n      }\n      branches(limit: $branch_limit) {\n        totalCount\n        cursor\n        items {\n          id\n          name\n          description\n          commits(limit: $commit_limit) {\n            totalCount\n            cursor\n            items {\n              id\n              referencedObject\n              message\n              authorName\n              authorId\n              createdAt\n            }\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"search_query": "mangrove stru 2", "limit": 25, "branch_limit": 10, "commit_limit": 10}}
+2024-04-13 23:47:11 [INFO] <<< {"data":{"streams":{"items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","description":"","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner","avatar":null}],"branches":{"totalCount":1,"cursor":"2024-03-15T04:38:52.679Z","items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"cursor":"2024-03-15T04:38:52.672Z","items":[{"id":"91bcd29b51","referencedObject":"2287296623f4fc275f768de1d6667e6d","message":"Sent 1770 objects from Revit2024.","authorName":"Ashish Ranjan","authorId":"c0b42d5776","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}]}}}
+
+2024-04-13 23:47:11 [INFO] >>> {"query": "query BranchesGet($stream_id: String!, $branches_limit: Int!, $commits_limit: Int!) {\n  stream(id: $stream_id) {\n    branches(limit: $branches_limit) {\n      items {\n        id\n        name\n        description\n        commits(limit: $commits_limit) {\n          totalCount\n          items {\n            id\n            message\n            referencedObject\n            sourceApplication\n            parents\n            authorId\n            authorName\n            branchName\n            createdAt\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "branches_limit": 10, "commits_limit": 10}}
+2024-04-13 23:47:11 [INFO] <<< {"data":{"stream":{"branches":{"items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","sourceApplication":"Revit2024","parents":null,"authorId":"c0b42d5776","authorName":"Ashish Ranjan","branchName":"main","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}}}
+
+2024-04-13 23:47:11 [INFO] >>> {"query": "query Commits($stream_id: String!, $limit: Int!) {\n  stream(id: $stream_id) {\n    commits(limit: $limit) {\n      items {\n        id\n        message\n        referencedObject\n        authorName\n        authorId\n        authorName\n        authorAvatar\n        branchName\n        createdAt\n        sourceApplication\n        totalChildrenCount\n        parents\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "limit": 100}}
+2024-04-13 23:47:12 [INFO] <<< {"data":{"stream":{"commits":{"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","authorName":"Ashish Ranjan","authorId":"c0b42d5776","authorAvatar":null,"branchName":"main","createdAt":"2024-03-15T04:38:52.672Z","sourceApplication":"Revit2024","totalChildrenCount":4411,"parents":null}]}}}}
+
+2024-04-13 23:47:12 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:47:12 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:47:12 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:47:12 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:47:12 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:47:13 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:47:13 [INFO] >>> {"query": "query Commit($stream_id: String!, $commit_id: String!) {\n  stream(id: $stream_id) {\n    commit(id: $commit_id) {\n      id\n      message\n      referencedObject\n      authorId\n      authorName\n      authorAvatar\n      branchName\n      createdAt\n      sourceApplication\n      totalChildrenCount\n      parents\n    }\n  }\n}", "variables": {"stream_id": "06564bda95", "commit_id": "f308ed526e"}}
+2024-04-13 23:47:13 [INFO] <<< {"data":{"stream":{"commit":{"id":"f308ed526e","message":"Sent 3480 objects from Revit2024.","referencedObject":"d12ac77d5c7324b942cf52bd8b50f14a","authorId":"c0b42d5776","authorName":"Ashish Ranjan","authorAvatar":null,"branchName":"main","createdAt":"2024-03-08T03:46:31.691Z","sourceApplication":"Revit2024","totalChildrenCount":6885,"parents":null}}}}
+
+2024-04-13 23:47:43 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:47:43 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:47:43 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:47:43 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:47:43 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:47:44 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:47:44 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-13 23:47:44 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-13 23:47:44 [INFO] >>> {"query": "query StreamSearch($search_query: String!, $limit: Int!, $branch_limit: Int!, $commit_limit: Int!) {\n  streams(query: $search_query, limit: $limit) {\n    items {\n      id\n      name\n      role\n      description\n      isPublic\n      createdAt\n      updatedAt\n      collaborators {\n        id\n        name\n        role\n        avatar\n      }\n      branches(limit: $branch_limit) {\n        totalCount\n        cursor\n        items {\n          id\n          name\n          description\n          commits(limit: $commit_limit) {\n            totalCount\n            cursor\n            items {\n              id\n              referencedObject\n              message\n              authorName\n              authorId\n              createdAt\n            }\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"search_query": "mangrove stru 2", "limit": 25, "branch_limit": 10, "commit_limit": 10}}
+2024-04-13 23:47:45 [INFO] <<< {"data":{"streams":{"items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","description":"","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner","avatar":null}],"branches":{"totalCount":1,"cursor":"2024-03-15T04:38:52.679Z","items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"cursor":"2024-03-15T04:38:52.672Z","items":[{"id":"91bcd29b51","referencedObject":"2287296623f4fc275f768de1d6667e6d","message":"Sent 1770 objects from Revit2024.","authorName":"Ashish Ranjan","authorId":"c0b42d5776","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}]}}}
+
+2024-04-13 23:47:45 [INFO] >>> {"query": "query BranchesGet($stream_id: String!, $branches_limit: Int!, $commits_limit: Int!) {\n  stream(id: $stream_id) {\n    branches(limit: $branches_limit) {\n      items {\n        id\n        name\n        description\n        commits(limit: $commits_limit) {\n          totalCount\n          items {\n            id\n            message\n            referencedObject\n            sourceApplication\n            parents\n            authorId\n            authorName\n            branchName\n            createdAt\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "branches_limit": 10, "commits_limit": 10}}
+2024-04-13 23:47:45 [INFO] <<< {"data":{"stream":{"branches":{"items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","sourceApplication":"Revit2024","parents":null,"authorId":"c0b42d5776","authorName":"Ashish Ranjan","branchName":"main","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}}}
+
+2024-04-13 23:47:45 [INFO] >>> {"query": "query Commits($stream_id: String!, $limit: Int!) {\n  stream(id: $stream_id) {\n    commits(limit: $limit) {\n      items {\n        id\n        message\n        referencedObject\n        authorName\n        authorId\n        authorName\n        authorAvatar\n        branchName\n        createdAt\n        sourceApplication\n        totalChildrenCount\n        parents\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "limit": 100}}
+2024-04-13 23:47:46 [INFO] <<< {"data":{"stream":{"commits":{"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","authorName":"Ashish Ranjan","authorId":"c0b42d5776","authorAvatar":null,"branchName":"main","createdAt":"2024-03-15T04:38:52.672Z","sourceApplication":"Revit2024","totalChildrenCount":4411,"parents":null}]}}}}
+
+2024-04-13 23:47:46 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:47:46 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:47:46 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:47:46 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:47:46 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:47:47 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:47:47 [INFO] >>> {"query": "query Commit($stream_id: String!, $commit_id: String!) {\n  stream(id: $stream_id) {\n    commit(id: $commit_id) {\n      id\n      message\n      referencedObject\n      authorId\n      authorName\n      authorAvatar\n      branchName\n      createdAt\n      sourceApplication\n      totalChildrenCount\n      parents\n    }\n  }\n}", "variables": {"stream_id": "06564bda95", "commit_id": "f308ed526e"}}
+2024-04-13 23:47:47 [INFO] <<< {"data":{"stream":{"commit":{"id":"f308ed526e","message":"Sent 3480 objects from Revit2024.","referencedObject":"d12ac77d5c7324b942cf52bd8b50f14a","authorId":"c0b42d5776","authorName":"Ashish Ranjan","authorAvatar":null,"branchName":"main","createdAt":"2024-03-08T03:46:31.691Z","sourceApplication":"Revit2024","totalChildrenCount":6885,"parents":null}}}}
+
+2024-04-13 23:56:57 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:56:57 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:56:57 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:56:57 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:56:57 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:56:58 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:56:58 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-13 23:56:58 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-13 23:56:58 [INFO] >>> {"query": "query StreamSearch($search_query: String!, $limit: Int!, $branch_limit: Int!, $commit_limit: Int!) {\n  streams(query: $search_query, limit: $limit) {\n    items {\n      id\n      name\n      role\n      description\n      isPublic\n      createdAt\n      updatedAt\n      collaborators {\n        id\n        name\n        role\n        avatar\n      }\n      branches(limit: $branch_limit) {\n        totalCount\n        cursor\n        items {\n          id\n          name\n          description\n          commits(limit: $commit_limit) {\n            totalCount\n            cursor\n            items {\n              id\n              referencedObject\n              message\n              authorName\n              authorId\n              createdAt\n            }\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"search_query": "mangrove stru 2", "limit": 25, "branch_limit": 10, "commit_limit": 10}}
+2024-04-13 23:56:59 [INFO] <<< {"data":{"streams":{"items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","description":"","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner","avatar":null}],"branches":{"totalCount":1,"cursor":"2024-03-15T04:38:52.679Z","items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"cursor":"2024-03-15T04:38:52.672Z","items":[{"id":"91bcd29b51","referencedObject":"2287296623f4fc275f768de1d6667e6d","message":"Sent 1770 objects from Revit2024.","authorName":"Ashish Ranjan","authorId":"c0b42d5776","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}]}}}
+
+2024-04-13 23:56:59 [INFO] >>> {"query": "query BranchesGet($stream_id: String!, $branches_limit: Int!, $commits_limit: Int!) {\n  stream(id: $stream_id) {\n    branches(limit: $branches_limit) {\n      items {\n        id\n        name\n        description\n        commits(limit: $commits_limit) {\n          totalCount\n          items {\n            id\n            message\n            referencedObject\n            sourceApplication\n            parents\n            authorId\n            authorName\n            branchName\n            createdAt\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "branches_limit": 10, "commits_limit": 10}}
+2024-04-13 23:56:59 [INFO] <<< {"data":{"stream":{"branches":{"items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","sourceApplication":"Revit2024","parents":null,"authorId":"c0b42d5776","authorName":"Ashish Ranjan","branchName":"main","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}}}
+
+2024-04-13 23:56:59 [INFO] >>> {"query": "query Commits($stream_id: String!, $limit: Int!) {\n  stream(id: $stream_id) {\n    commits(limit: $limit) {\n      items {\n        id\n        message\n        referencedObject\n        authorName\n        authorId\n        authorName\n        authorAvatar\n        branchName\n        createdAt\n        sourceApplication\n        totalChildrenCount\n        parents\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "limit": 100}}
+2024-04-13 23:56:59 [INFO] <<< {"data":{"stream":{"commits":{"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","authorName":"Ashish Ranjan","authorId":"c0b42d5776","authorAvatar":null,"branchName":"main","createdAt":"2024-03-15T04:38:52.672Z","sourceApplication":"Revit2024","totalChildrenCount":4411,"parents":null}]}}}}
+
+2024-04-13 23:56:59 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:57:00 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:57:00 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:57:00 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:57:00 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:57:00 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:57:00 [INFO] >>> {"query": "query Commit($stream_id: String!, $commit_id: String!) {\n  stream(id: $stream_id) {\n    commit(id: $commit_id) {\n      id\n      message\n      referencedObject\n      authorId\n      authorName\n      authorAvatar\n      branchName\n      createdAt\n      sourceApplication\n      totalChildrenCount\n      parents\n    }\n  }\n}", "variables": {"stream_id": "06564bda95", "commit_id": "f308ed526e"}}
+2024-04-13 23:57:01 [INFO] <<< {"data":{"stream":{"commit":{"id":"f308ed526e","message":"Sent 3480 objects from Revit2024.","referencedObject":"d12ac77d5c7324b942cf52bd8b50f14a","authorId":"c0b42d5776","authorName":"Ashish Ranjan","authorAvatar":null,"branchName":"main","createdAt":"2024-03-08T03:46:31.691Z","sourceApplication":"Revit2024","totalChildrenCount":6885,"parents":null}}}}
+
+2024-04-13 23:57:07 [INFO] Question: what is this data
+
+2024-04-13 23:57:07 [INFO] Running PandasAI with openai LLM...
+2024-04-13 23:57:07 [INFO] Prompt ID: 1a3b9efa-85ae-4632-8f87-f0df5c4681b7
+2024-04-13 23:57:07 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-13 23:57:07 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-13 23:57:07 [INFO] Executing Step 1: CacheLookup
+2024-04-13 23:57:07 [INFO] Executing Step 2: PromptGeneration
+2024-04-13 23:57:07 [INFO] Using prompt: <dataframe>
+dfs[0]:151x2
+Category,Type Name
+-2000700,
+-2000700,
+-2000700,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ what is this data
+
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-04-13 23:57:07 [INFO] Executing Step 3: CodeGenerator
+2024-04-13 23:57:08 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-13 23:57:08 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:151x2
+Category,Type Name
+-2000700,
+-2000700,
+-2000700,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ what is this data
+
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-04-13 23:57:08 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+dfs = [pd.DataFrame({'Category': [-2000700, -2000700, -2000700], 'Type Name': ['','','']})]
+
+# Declare result var: 
+result = {"type": "dataframe", "value": dfs[0]}
+            ```
+            
+2024-04-13 23:57:08 [INFO] Executing Step 4: CachePopulation
+2024-04-13 23:57:08 [INFO] Executing Step 5: CodeCleaning
+2024-04-13 23:57:08 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': dfs[0]}
+        ```
+2024-04-13 23:57:08 [INFO] Executing Step 6: CodeExecution
+2024-04-13 23:57:08 [INFO] Executing Step 7: ResultValidation
+2024-04-13 23:57:08 [INFO] Answer: {'type': 'dataframe', 'value':      Category Type Name
+0    -2000700      None
+1    -2000700      None
+2    -2000700      None
+3    -2000700      None
+4    -2000700      None
+..        ...       ...
+146  -2000700      None
+147  -2000700      None
+148  -2000700      None
+149  -2000700      None
+150  -2000700      None
+
+[151 rows x 2 columns]}
+2024-04-13 23:57:08 [INFO] Executing Step 8: ResultParsing
+2024-04-13 23:58:16 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:58:16 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:58:16 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:58:16 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:58:16 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:58:17 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:58:17 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-13 23:58:17 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-13 23:58:17 [INFO] >>> {"query": "query StreamSearch($search_query: String!, $limit: Int!, $branch_limit: Int!, $commit_limit: Int!) {\n  streams(query: $search_query, limit: $limit) {\n    items {\n      id\n      name\n      role\n      description\n      isPublic\n      createdAt\n      updatedAt\n      collaborators {\n        id\n        name\n        role\n        avatar\n      }\n      branches(limit: $branch_limit) {\n        totalCount\n        cursor\n        items {\n          id\n          name\n          description\n          commits(limit: $commit_limit) {\n            totalCount\n            cursor\n            items {\n              id\n              referencedObject\n              message\n              authorName\n              authorId\n              createdAt\n            }\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"search_query": "mangrove stru 2", "limit": 25, "branch_limit": 10, "commit_limit": 10}}
+2024-04-13 23:58:18 [INFO] <<< {"data":{"streams":{"items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","description":"","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner","avatar":null}],"branches":{"totalCount":1,"cursor":"2024-03-15T04:38:52.679Z","items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"cursor":"2024-03-15T04:38:52.672Z","items":[{"id":"91bcd29b51","referencedObject":"2287296623f4fc275f768de1d6667e6d","message":"Sent 1770 objects from Revit2024.","authorName":"Ashish Ranjan","authorId":"c0b42d5776","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}]}}}
+
+2024-04-13 23:58:18 [INFO] >>> {"query": "query BranchesGet($stream_id: String!, $branches_limit: Int!, $commits_limit: Int!) {\n  stream(id: $stream_id) {\n    branches(limit: $branches_limit) {\n      items {\n        id\n        name\n        description\n        commits(limit: $commits_limit) {\n          totalCount\n          items {\n            id\n            message\n            referencedObject\n            sourceApplication\n            parents\n            authorId\n            authorName\n            branchName\n            createdAt\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "branches_limit": 10, "commits_limit": 10}}
+2024-04-13 23:58:18 [INFO] <<< {"data":{"stream":{"branches":{"items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","sourceApplication":"Revit2024","parents":null,"authorId":"c0b42d5776","authorName":"Ashish Ranjan","branchName":"main","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}}}
+
+2024-04-13 23:58:18 [INFO] >>> {"query": "query Commits($stream_id: String!, $limit: Int!) {\n  stream(id: $stream_id) {\n    commits(limit: $limit) {\n      items {\n        id\n        message\n        referencedObject\n        authorName\n        authorId\n        authorName\n        authorAvatar\n        branchName\n        createdAt\n        sourceApplication\n        totalChildrenCount\n        parents\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "limit": 100}}
+2024-04-13 23:58:18 [INFO] <<< {"data":{"stream":{"commits":{"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","authorName":"Ashish Ranjan","authorId":"c0b42d5776","authorAvatar":null,"branchName":"main","createdAt":"2024-03-15T04:38:52.672Z","sourceApplication":"Revit2024","totalChildrenCount":4411,"parents":null}]}}}}
+
+2024-04-13 23:58:18 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:58:19 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:58:19 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:58:19 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:58:19 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:58:19 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:58:19 [INFO] >>> {"query": "query Commit($stream_id: String!, $commit_id: String!) {\n  stream(id: $stream_id) {\n    commit(id: $commit_id) {\n      id\n      message\n      referencedObject\n      authorId\n      authorName\n      authorAvatar\n      branchName\n      createdAt\n      sourceApplication\n      totalChildrenCount\n      parents\n    }\n  }\n}", "variables": {"stream_id": "06564bda95", "commit_id": "f308ed526e"}}
+2024-04-13 23:58:20 [INFO] <<< {"data":{"stream":{"commit":{"id":"f308ed526e","message":"Sent 3480 objects from Revit2024.","referencedObject":"d12ac77d5c7324b942cf52bd8b50f14a","authorId":"c0b42d5776","authorName":"Ashish Ranjan","authorAvatar":null,"branchName":"main","createdAt":"2024-03-08T03:46:31.691Z","sourceApplication":"Revit2024","totalChildrenCount":6885,"parents":null}}}}
+
+2024-04-13 23:58:22 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:58:22 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:58:22 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:58:23 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:58:23 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:58:23 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:58:23 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-13 23:58:24 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-13 23:58:24 [INFO] >>> {"query": "query StreamSearch($search_query: String!, $limit: Int!, $branch_limit: Int!, $commit_limit: Int!) {\n  streams(query: $search_query, limit: $limit) {\n    items {\n      id\n      name\n      role\n      description\n      isPublic\n      createdAt\n      updatedAt\n      collaborators {\n        id\n        name\n        role\n        avatar\n      }\n      branches(limit: $branch_limit) {\n        totalCount\n        cursor\n        items {\n          id\n          name\n          description\n          commits(limit: $commit_limit) {\n            totalCount\n            cursor\n            items {\n              id\n              referencedObject\n              message\n              authorName\n              authorId\n              createdAt\n            }\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"search_query": "mangrove stru 2", "limit": 25, "branch_limit": 10, "commit_limit": 10}}
+2024-04-13 23:58:24 [INFO] <<< {"data":{"streams":{"items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","description":"","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner","avatar":null}],"branches":{"totalCount":1,"cursor":"2024-03-15T04:38:52.679Z","items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"cursor":"2024-03-15T04:38:52.672Z","items":[{"id":"91bcd29b51","referencedObject":"2287296623f4fc275f768de1d6667e6d","message":"Sent 1770 objects from Revit2024.","authorName":"Ashish Ranjan","authorId":"c0b42d5776","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}]}}}
+
+2024-04-13 23:58:24 [INFO] >>> {"query": "query BranchesGet($stream_id: String!, $branches_limit: Int!, $commits_limit: Int!) {\n  stream(id: $stream_id) {\n    branches(limit: $branches_limit) {\n      items {\n        id\n        name\n        description\n        commits(limit: $commits_limit) {\n          totalCount\n          items {\n            id\n            message\n            referencedObject\n            sourceApplication\n            parents\n            authorId\n            authorName\n            branchName\n            createdAt\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "branches_limit": 10, "commits_limit": 10}}
+2024-04-13 23:58:25 [INFO] <<< {"data":{"stream":{"branches":{"items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","sourceApplication":"Revit2024","parents":null,"authorId":"c0b42d5776","authorName":"Ashish Ranjan","branchName":"main","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}}}
+
+2024-04-13 23:58:25 [INFO] >>> {"query": "query Commits($stream_id: String!, $limit: Int!) {\n  stream(id: $stream_id) {\n    commits(limit: $limit) {\n      items {\n        id\n        message\n        referencedObject\n        authorName\n        authorId\n        authorName\n        authorAvatar\n        branchName\n        createdAt\n        sourceApplication\n        totalChildrenCount\n        parents\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "limit": 100}}
+2024-04-13 23:58:25 [INFO] <<< {"data":{"stream":{"commits":{"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","authorName":"Ashish Ranjan","authorId":"c0b42d5776","authorAvatar":null,"branchName":"main","createdAt":"2024-03-15T04:38:52.672Z","sourceApplication":"Revit2024","totalChildrenCount":4411,"parents":null}]}}}}
+
+2024-04-13 23:58:26 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:58:26 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:58:26 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:58:26 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:58:26 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:58:27 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:58:27 [INFO] >>> {"query": "query Commit($stream_id: String!, $commit_id: String!) {\n  stream(id: $stream_id) {\n    commit(id: $commit_id) {\n      id\n      message\n      referencedObject\n      authorId\n      authorName\n      authorAvatar\n      branchName\n      createdAt\n      sourceApplication\n      totalChildrenCount\n      parents\n    }\n  }\n}", "variables": {"stream_id": "06564bda95", "commit_id": "f308ed526e"}}
+2024-04-13 23:58:27 [INFO] <<< {"data":{"stream":{"commit":{"id":"f308ed526e","message":"Sent 3480 objects from Revit2024.","referencedObject":"d12ac77d5c7324b942cf52bd8b50f14a","authorId":"c0b42d5776","authorName":"Ashish Ranjan","authorAvatar":null,"branchName":"main","createdAt":"2024-03-08T03:46:31.691Z","sourceApplication":"Revit2024","totalChildrenCount":6885,"parents":null}}}}
+
+2024-04-13 23:59:39 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:59:39 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:59:39 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:59:40 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:59:40 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:59:40 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:59:40 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-13 23:59:41 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-13 23:59:41 [INFO] >>> {"query": "query StreamSearch($search_query: String!, $limit: Int!, $branch_limit: Int!, $commit_limit: Int!) {\n  streams(query: $search_query, limit: $limit) {\n    items {\n      id\n      name\n      role\n      description\n      isPublic\n      createdAt\n      updatedAt\n      collaborators {\n        id\n        name\n        role\n        avatar\n      }\n      branches(limit: $branch_limit) {\n        totalCount\n        cursor\n        items {\n          id\n          name\n          description\n          commits(limit: $commit_limit) {\n            totalCount\n            cursor\n            items {\n              id\n              referencedObject\n              message\n              authorName\n              authorId\n              createdAt\n            }\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"search_query": "mangrove stru 2", "limit": 25, "branch_limit": 10, "commit_limit": 10}}
+2024-04-13 23:59:41 [INFO] <<< {"data":{"streams":{"items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","description":"","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner","avatar":null}],"branches":{"totalCount":1,"cursor":"2024-03-15T04:38:52.679Z","items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"cursor":"2024-03-15T04:38:52.672Z","items":[{"id":"91bcd29b51","referencedObject":"2287296623f4fc275f768de1d6667e6d","message":"Sent 1770 objects from Revit2024.","authorName":"Ashish Ranjan","authorId":"c0b42d5776","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}]}}}
+
+2024-04-13 23:59:41 [INFO] >>> {"query": "query BranchesGet($stream_id: String!, $branches_limit: Int!, $commits_limit: Int!) {\n  stream(id: $stream_id) {\n    branches(limit: $branches_limit) {\n      items {\n        id\n        name\n        description\n        commits(limit: $commits_limit) {\n          totalCount\n          items {\n            id\n            message\n            referencedObject\n            sourceApplication\n            parents\n            authorId\n            authorName\n            branchName\n            createdAt\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "branches_limit": 10, "commits_limit": 10}}
+2024-04-13 23:59:42 [INFO] <<< {"data":{"stream":{"branches":{"items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","sourceApplication":"Revit2024","parents":null,"authorId":"c0b42d5776","authorName":"Ashish Ranjan","branchName":"main","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}}}
+
+2024-04-13 23:59:42 [INFO] >>> {"query": "query Commits($stream_id: String!, $limit: Int!) {\n  stream(id: $stream_id) {\n    commits(limit: $limit) {\n      items {\n        id\n        message\n        referencedObject\n        authorName\n        authorId\n        authorName\n        authorAvatar\n        branchName\n        createdAt\n        sourceApplication\n        totalChildrenCount\n        parents\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "limit": 100}}
+2024-04-13 23:59:43 [INFO] <<< {"data":{"stream":{"commits":{"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","authorName":"Ashish Ranjan","authorId":"c0b42d5776","authorAvatar":null,"branchName":"main","createdAt":"2024-03-15T04:38:52.672Z","sourceApplication":"Revit2024","totalChildrenCount":4411,"parents":null}]}}}}
+
+2024-04-13 23:59:43 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:59:43 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:59:43 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-13 23:59:43 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-13 23:59:43 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-13 23:59:44 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-13 23:59:44 [INFO] >>> {"query": "query Commit($stream_id: String!, $commit_id: String!) {\n  stream(id: $stream_id) {\n    commit(id: $commit_id) {\n      id\n      message\n      referencedObject\n      authorId\n      authorName\n      authorAvatar\n      branchName\n      createdAt\n      sourceApplication\n      totalChildrenCount\n      parents\n    }\n  }\n}", "variables": {"stream_id": "06564bda95", "commit_id": "f308ed526e"}}
+2024-04-13 23:59:44 [INFO] <<< {"data":{"stream":{"commit":{"id":"f308ed526e","message":"Sent 3480 objects from Revit2024.","referencedObject":"d12ac77d5c7324b942cf52bd8b50f14a","authorId":"c0b42d5776","authorName":"Ashish Ranjan","authorAvatar":null,"branchName":"main","createdAt":"2024-03-08T03:46:31.691Z","sourceApplication":"Revit2024","totalChildrenCount":6885,"parents":null}}}}
+
+2024-04-14 00:00:35 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-14 00:00:35 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-14 00:00:35 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-14 00:00:35 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-14 00:00:35 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-14 00:00:36 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-14 00:00:36 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-14 00:00:36 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-14 00:00:36 [INFO] >>> {"query": "query StreamSearch($search_query: String!, $limit: Int!, $branch_limit: Int!, $commit_limit: Int!) {\n  streams(query: $search_query, limit: $limit) {\n    items {\n      id\n      name\n      role\n      description\n      isPublic\n      createdAt\n      updatedAt\n      collaborators {\n        id\n        name\n        role\n        avatar\n      }\n      branches(limit: $branch_limit) {\n        totalCount\n        cursor\n        items {\n          id\n          name\n          description\n          commits(limit: $commit_limit) {\n            totalCount\n            cursor\n            items {\n              id\n              referencedObject\n              message\n              authorName\n              authorId\n              createdAt\n            }\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"search_query": "mangrove stru 2", "limit": 25, "branch_limit": 10, "commit_limit": 10}}
+2024-04-14 00:00:37 [INFO] <<< {"data":{"streams":{"items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","description":"","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner","avatar":null}],"branches":{"totalCount":1,"cursor":"2024-03-15T04:38:52.679Z","items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"cursor":"2024-03-15T04:38:52.672Z","items":[{"id":"91bcd29b51","referencedObject":"2287296623f4fc275f768de1d6667e6d","message":"Sent 1770 objects from Revit2024.","authorName":"Ashish Ranjan","authorId":"c0b42d5776","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}]}}}
+
+2024-04-14 00:00:37 [INFO] >>> {"query": "query BranchesGet($stream_id: String!, $branches_limit: Int!, $commits_limit: Int!) {\n  stream(id: $stream_id) {\n    branches(limit: $branches_limit) {\n      items {\n        id\n        name\n        description\n        commits(limit: $commits_limit) {\n          totalCount\n          items {\n            id\n            message\n            referencedObject\n            sourceApplication\n            parents\n            authorId\n            authorName\n            branchName\n            createdAt\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "branches_limit": 10, "commits_limit": 10}}
+2024-04-14 00:00:37 [INFO] <<< {"data":{"stream":{"branches":{"items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","sourceApplication":"Revit2024","parents":null,"authorId":"c0b42d5776","authorName":"Ashish Ranjan","branchName":"main","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}}}
+
+2024-04-14 00:00:37 [INFO] >>> {"query": "query Commits($stream_id: String!, $limit: Int!) {\n  stream(id: $stream_id) {\n    commits(limit: $limit) {\n      items {\n        id\n        message\n        referencedObject\n        authorName\n        authorId\n        authorName\n        authorAvatar\n        branchName\n        createdAt\n        sourceApplication\n        totalChildrenCount\n        parents\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "limit": 100}}
+2024-04-14 00:00:38 [INFO] <<< {"data":{"stream":{"commits":{"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","authorName":"Ashish Ranjan","authorId":"c0b42d5776","authorAvatar":null,"branchName":"main","createdAt":"2024-03-15T04:38:52.672Z","sourceApplication":"Revit2024","totalChildrenCount":4411,"parents":null}]}}}}
+
+2024-04-14 00:00:38 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-14 00:00:38 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-14 00:00:38 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-14 00:00:39 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-14 00:00:39 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-14 00:00:39 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-14 00:00:39 [INFO] >>> {"query": "query Commit($stream_id: String!, $commit_id: String!) {\n  stream(id: $stream_id) {\n    commit(id: $commit_id) {\n      id\n      message\n      referencedObject\n      authorId\n      authorName\n      authorAvatar\n      branchName\n      createdAt\n      sourceApplication\n      totalChildrenCount\n      parents\n    }\n  }\n}", "variables": {"stream_id": "06564bda95", "commit_id": "f308ed526e"}}
+2024-04-14 00:00:40 [INFO] <<< {"data":{"stream":{"commit":{"id":"f308ed526e","message":"Sent 3480 objects from Revit2024.","referencedObject":"d12ac77d5c7324b942cf52bd8b50f14a","authorId":"c0b42d5776","authorName":"Ashish Ranjan","authorAvatar":null,"branchName":"main","createdAt":"2024-03-08T03:46:31.691Z","sourceApplication":"Revit2024","totalChildrenCount":6885,"parents":null}}}}
+
+2024-04-14 00:00:59 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-14 00:00:59 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-14 00:01:00 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-14 00:01:00 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-14 00:01:00 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-14 00:01:00 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-14 00:01:00 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-14 00:01:00 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-14 00:01:00 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-14 00:01:00 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-14 00:01:01 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-14 00:01:01 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-14 00:01:01 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-14 00:01:01 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-14 00:01:01 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-14 00:01:02 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-14 00:01:02 [INFO] >>> {"query": "query StreamSearch($search_query: String!, $limit: Int!, $branch_limit: Int!, $commit_limit: Int!) {\n  streams(query: $search_query, limit: $limit) {\n    items {\n      id\n      name\n      role\n      description\n      isPublic\n      createdAt\n      updatedAt\n      collaborators {\n        id\n        name\n        role\n        avatar\n      }\n      branches(limit: $branch_limit) {\n        totalCount\n        cursor\n        items {\n          id\n          name\n          description\n          commits(limit: $commit_limit) {\n            totalCount\n            cursor\n            items {\n              id\n              referencedObject\n              message\n              authorName\n              authorId\n              createdAt\n            }\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"search_query": "mangrove stru 2", "limit": 25, "branch_limit": 10, "commit_limit": 10}}
+2024-04-14 00:01:02 [INFO] <<< {"data":{"streams":{"items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","description":"","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner","avatar":null}],"branches":{"totalCount":1,"cursor":"2024-03-15T04:38:52.679Z","items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"cursor":"2024-03-15T04:38:52.672Z","items":[{"id":"91bcd29b51","referencedObject":"2287296623f4fc275f768de1d6667e6d","message":"Sent 1770 objects from Revit2024.","authorName":"Ashish Ranjan","authorId":"c0b42d5776","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}]}}}
+
+2024-04-14 00:01:02 [INFO] >>> {"query": "query BranchesGet($stream_id: String!, $branches_limit: Int!, $commits_limit: Int!) {\n  stream(id: $stream_id) {\n    branches(limit: $branches_limit) {\n      items {\n        id\n        name\n        description\n        commits(limit: $commits_limit) {\n          totalCount\n          items {\n            id\n            message\n            referencedObject\n            sourceApplication\n            parents\n            authorId\n            authorName\n            branchName\n            createdAt\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "branches_limit": 10, "commits_limit": 10}}
+2024-04-14 00:01:03 [INFO] <<< {"data":{"stream":{"branches":{"items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","sourceApplication":"Revit2024","parents":null,"authorId":"c0b42d5776","authorName":"Ashish Ranjan","branchName":"main","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}}}
+
+2024-04-14 00:01:03 [INFO] >>> {"query": "query Commits($stream_id: String!, $limit: Int!) {\n  stream(id: $stream_id) {\n    commits(limit: $limit) {\n      items {\n        id\n        message\n        referencedObject\n        authorName\n        authorId\n        authorName\n        authorAvatar\n        branchName\n        createdAt\n        sourceApplication\n        totalChildrenCount\n        parents\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "limit": 100}}
+2024-04-14 00:01:03 [INFO] <<< {"data":{"stream":{"commits":{"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","authorName":"Ashish Ranjan","authorId":"c0b42d5776","authorAvatar":null,"branchName":"main","createdAt":"2024-03-15T04:38:52.672Z","sourceApplication":"Revit2024","totalChildrenCount":4411,"parents":null}]}}}}
+
+2024-04-14 00:01:03 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-14 00:01:04 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-14 00:01:04 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-14 00:01:04 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-14 00:01:04 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-14 00:01:05 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-14 00:01:05 [INFO] >>> {"query": "query Commit($stream_id: String!, $commit_id: String!) {\n  stream(id: $stream_id) {\n    commit(id: $commit_id) {\n      id\n      message\n      referencedObject\n      authorId\n      authorName\n      authorAvatar\n      branchName\n      createdAt\n      sourceApplication\n      totalChildrenCount\n      parents\n    }\n  }\n}", "variables": {"stream_id": "06564bda95", "commit_id": "f308ed526e"}}
+2024-04-14 00:01:05 [INFO] <<< {"data":{"stream":{"commit":{"id":"f308ed526e","message":"Sent 3480 objects from Revit2024.","referencedObject":"d12ac77d5c7324b942cf52bd8b50f14a","authorId":"c0b42d5776","authorName":"Ashish Ranjan","authorAvatar":null,"branchName":"main","createdAt":"2024-03-08T03:46:31.691Z","sourceApplication":"Revit2024","totalChildrenCount":6885,"parents":null}}}}
+
+2024-04-14 00:01:43 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-14 00:01:43 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-14 00:01:43 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-14 00:01:44 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-14 00:01:44 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-14 00:01:44 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-14 00:01:44 [INFO] >>> {"query": "query User($stream_limit: Int!) {\n  user {\n    id\n    bio\n    name\n    email\n    avatar\n    company\n    verified\n    profiles\n    role\n    streams(limit: $stream_limit) {\n      totalCount\n      cursor\n      items {\n        id\n        name\n        role\n        isPublic\n        createdAt\n        updatedAt\n        description\n        commentCount\n        favoritesCount\n        collaborators {\n          id\n          name\n          role\n        }\n      }\n    }\n  }\n}", "variables": {"stream_limit": 10}}
+2024-04-14 00:01:44 [INFO] <<< {"data":{"user":{"id":"c0b42d5776","bio":null,"name":"Ashish Ranjan","email":"ar7ashish008@gmail.com","avatar":null,"company":null,"verified":true,"profiles":null,"role":"server:user","streams":{"totalCount":8,"cursor":"2024-03-05T01:59:08.014Z","items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"c66cdc8ed3","name":"mangrove stru 1","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:25:21.154Z","updatedAt":"2024-03-15T04:27:26.145Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"cc61d5b644","name":"body stru 2","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:21:52.986Z","updatedAt":"2024-03-15T04:23:13.262Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"3f89e7e9b6","name":"body(stru)","role":"stream:owner","isPublic":false,"createdAt":"2024-03-15T04:18:46.674Z","updatedAt":"2024-03-15T04:19:10.945Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"a884549a97","name":"room","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T05:55:18.035Z","updatedAt":"2024-03-08T06:00:24.425Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"06564bda95","name":"body archi","role":"stream:owner","isPublic":true,"createdAt":"2024-03-08T03:45:27.621Z","updatedAt":"2024-03-08T04:00:58.550Z","description":"","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"845c6482a5","name":"P_Body_ARC","role":"stream:owner","isPublic":false,"createdAt":"2024-03-06T19:40:56.091Z","updatedAt":"2024-03-08T02:33:08.950Z","description":"Autogenerated Stream for QuickSend","commentCount":1,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]},{"id":"89ded754d8","name":"Ashish's First Project","role":"stream:owner","isPublic":true,"createdAt":"2024-03-05T01:59:07.677Z","updatedAt":"2024-03-05T01:59:08.014Z","description":"Welcome to Speckle! This is your sample project - feel free to do whatever you want with it!","commentCount":0,"favoritesCount":0,"collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner"}]}]}}}}
+
+2024-04-14 00:01:44 [INFO] >>> {"query": "query StreamSearch($search_query: String!, $limit: Int!, $branch_limit: Int!, $commit_limit: Int!) {\n  streams(query: $search_query, limit: $limit) {\n    items {\n      id\n      name\n      role\n      description\n      isPublic\n      createdAt\n      updatedAt\n      collaborators {\n        id\n        name\n        role\n        avatar\n      }\n      branches(limit: $branch_limit) {\n        totalCount\n        cursor\n        items {\n          id\n          name\n          description\n          commits(limit: $commit_limit) {\n            totalCount\n            cursor\n            items {\n              id\n              referencedObject\n              message\n              authorName\n              authorId\n              createdAt\n            }\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"search_query": "mangrove stru 2", "limit": 25, "branch_limit": 10, "commit_limit": 10}}
+2024-04-14 00:01:45 [INFO] <<< {"data":{"streams":{"items":[{"id":"5cd0b0ddb9","name":"mangrove stru 2","role":"stream:owner","description":"","isPublic":true,"createdAt":"2024-03-15T04:38:24.992Z","updatedAt":"2024-03-15T04:51:01.676Z","collaborators":[{"id":"c0b42d5776","name":"Ashish Ranjan","role":"stream:owner","avatar":null}],"branches":{"totalCount":1,"cursor":"2024-03-15T04:38:52.679Z","items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"cursor":"2024-03-15T04:38:52.672Z","items":[{"id":"91bcd29b51","referencedObject":"2287296623f4fc275f768de1d6667e6d","message":"Sent 1770 objects from Revit2024.","authorName":"Ashish Ranjan","authorId":"c0b42d5776","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}]}}}
+
+2024-04-14 00:01:45 [INFO] >>> {"query": "query BranchesGet($stream_id: String!, $branches_limit: Int!, $commits_limit: Int!) {\n  stream(id: $stream_id) {\n    branches(limit: $branches_limit) {\n      items {\n        id\n        name\n        description\n        commits(limit: $commits_limit) {\n          totalCount\n          items {\n            id\n            message\n            referencedObject\n            sourceApplication\n            parents\n            authorId\n            authorName\n            branchName\n            createdAt\n          }\n        }\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "branches_limit": 10, "commits_limit": 10}}
+2024-04-14 00:01:45 [INFO] <<< {"data":{"stream":{"branches":{"items":[{"id":"ccb1f3eadc","name":"main","description":"default branch","commits":{"totalCount":1,"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","sourceApplication":"Revit2024","parents":null,"authorId":"c0b42d5776","authorName":"Ashish Ranjan","branchName":"main","createdAt":"2024-03-15T04:38:52.672Z"}]}}]}}}}
+
+2024-04-14 00:01:45 [INFO] >>> {"query": "query Commits($stream_id: String!, $limit: Int!) {\n  stream(id: $stream_id) {\n    commits(limit: $limit) {\n      items {\n        id\n        message\n        referencedObject\n        authorName\n        authorId\n        authorName\n        authorAvatar\n        branchName\n        createdAt\n        sourceApplication\n        totalChildrenCount\n        parents\n      }\n    }\n  }\n}", "variables": {"stream_id": "5cd0b0ddb9", "limit": 100}}
+2024-04-14 00:01:45 [INFO] <<< {"data":{"stream":{"commits":{"items":[{"id":"91bcd29b51","message":"Sent 1770 objects from Revit2024.","referencedObject":"2287296623f4fc275f768de1d6667e6d","authorName":"Ashish Ranjan","authorId":"c0b42d5776","authorAvatar":null,"branchName":"main","createdAt":"2024-03-15T04:38:52.672Z","sourceApplication":"Revit2024","totalChildrenCount":4411,"parents":null}]}}}}
+
+2024-04-14 00:01:45 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-14 00:01:46 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-14 00:01:46 [INFO] >>> {"query": "query Server {\n  serverInfo {\n    version\n  }\n}"}
+2024-04-14 00:01:46 [INFO] <<< {"data":{"serverInfo":{"version":"2.18.15-alpha.96610"}}}
+
+2024-04-14 00:01:46 [INFO] >>> {"query": "query User {\n  activeUser {\n    id\n    email\n    name\n    bio\n    company\n    avatar\n    verified\n    profiles\n    role\n  }\n}"}
+2024-04-14 00:01:46 [INFO] <<< {"data":{"activeUser":{"id":"c0b42d5776","email":"ar7ashish008@gmail.com","name":"Ashish Ranjan","bio":null,"company":null,"avatar":null,"verified":true,"profiles":null,"role":"server:user"}}}
+
+2024-04-14 00:01:46 [INFO] >>> {"query": "query Commit($stream_id: String!, $commit_id: String!) {\n  stream(id: $stream_id) {\n    commit(id: $commit_id) {\n      id\n      message\n      referencedObject\n      authorId\n      authorName\n      authorAvatar\n      branchName\n      createdAt\n      sourceApplication\n      totalChildrenCount\n      parents\n    }\n  }\n}", "variables": {"stream_id": "06564bda95", "commit_id": "f308ed526e"}}
+2024-04-14 00:01:47 [INFO] <<< {"data":{"stream":{"commit":{"id":"f308ed526e","message":"Sent 3480 objects from Revit2024.","referencedObject":"d12ac77d5c7324b942cf52bd8b50f14a","authorId":"c0b42d5776","authorName":"Ashish Ranjan","authorAvatar":null,"branchName":"main","createdAt":"2024-03-08T03:46:31.691Z","sourceApplication":"Revit2024","totalChildrenCount":6885,"parents":null}}}}
+
+2024-04-14 00:01:50 [INFO] Question: what is the sumary of the data 
+
+2024-04-14 00:01:50 [INFO] Running PandasAI with openai LLM...
+2024-04-14 00:01:50 [INFO] Prompt ID: 1dfb385a-a3ad-4b5b-bd34-4e5ed524b724
+2024-04-14 00:01:50 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-04-14 00:01:50 [INFO] Executing Step 0: ValidatePipelineInput
+2024-04-14 00:01:50 [INFO] Executing Step 1: CacheLookup
+2024-04-14 00:01:50 [INFO] Executing Step 2: PromptGeneration
+2024-04-14 00:01:50 [INFO] Using prompt: <dataframe>
+dfs[0]:151x6
+Category,Color,Comments,Cost,Description,Design Option
+-2000700,8434146,,,,-1
+-2000700,328965,Rendering appearance not upgraded ,0.0,Ribbed aluminium cladding,-1
+-2000700,7451604,,0.0,Quercus Rubra,-1
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ what is the sumary of the data 
+
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-04-14 00:01:50 [INFO] Executing Step 3: CodeGenerator
+2024-04-14 00:01:52 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-04-14 00:01:52 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:151x6
+Category,Color,Comments,Cost,Description,Design Option
+-2000700,8434146,,,,-1
+-2000700,328965,Rendering appearance not upgraded ,0.0,Ribbed aluminium cladding,-1
+-2000700,7451604,,0.0,Quercus Rubra,-1
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ what is the sumary of the data 
+
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-04-14 00:01:52 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+dfs = [pd.DataFrame({
+    'Category': [-2000700, -2000700, -2000700],
+    'Color': [8434146, 328965, 7451604],
+    'Comments': ['', 'Rendering appearance not upgraded', ''],
+    'Cost': [0.0, 0.0, 0.0],
+    'Description': ['Ribbed aluminium cladding', 'Quercus Rubra', ''],
+    'Design Option': [-1, -1, -1]
+})]
+
+# Declare result var
+result = {
+    "type": "dataframe",
+    "value": dfs[0].describe()
+}
+            ```
+            
+2024-04-14 00:01:52 [INFO] Executing Step 4: CachePopulation
+2024-04-14 00:01:52 [INFO] Executing Step 5: CodeCleaning
+2024-04-14 00:01:52 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': dfs[0].describe()}
+        ```
+2024-04-14 00:01:52 [INFO] Executing Step 6: CodeExecution
+2024-04-14 00:01:52 [INFO] Executing Step 7: ResultValidation
+2024-04-14 00:01:52 [INFO] Answer: {'type': 'dataframe', 'value':               Color   Cost
+count  1.510000e+02  124.0
+mean   1.026094e+07    0.0
+std    5.311794e+06    0.0
+min    0.000000e+00    0.0
+25%    7.736476e+06    0.0
+50%    1.046109e+07    0.0
+75%    1.572555e+07    0.0
+max    1.677722e+07    0.0}
+2024-04-14 00:01:52 [INFO] Executing Step 8: ResultParsing
