@@ -121,7 +121,16 @@ if commit_data is not None and hasattr(commit_data, 'get_dynamic_member_names'):
     selected_category = st.selectbox("Select category", dynamic_member_names)
 else:
     print("Commit data is None or does not have a 'get_dynamic_member_names' method")
-    
+if obj_id is not None and transport is not None:
+    # check if 'receive' method exists in operations
+    if hasattr(operations, 'receive'):
+        # receive objects from commit
+        commit_data = operations.receive(obj_id, transport)
+    else:
+        print("'receive' method does not exist in operations")
+else:
+    print("obj_id or transport is None")
+
 with input:
     selected_category = st.selectbox("Select category", commit_data.get_dynamic_member_names())
 
