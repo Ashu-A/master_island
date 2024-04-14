@@ -113,10 +113,15 @@ if commit is not None and hasattr(commit, 'referencedObject'):
     # get object id from commit
     obj_id = commit.referencedObject
     # receive objects from commit
-    commit_data = operations.receive(obj_id, transport)
-else:
-    print("Commit object is None or does not have a 'referencedObject' attribute")
+commit_data = operations.receive(obj_id, transport)
 
+if commit_data is not None and hasattr(commit_data, 'get_dynamic_member_names'):
+    # get dynamic member names from commit data
+    dynamic_member_names = commit_data.get_dynamic_member_names()
+    selected_category = st.selectbox("Select category", dynamic_member_names)
+else:
+    print("Commit data is None or does not have a 'get_dynamic_member_names' method")
+    
 with input:
     selected_category = st.selectbox("Select category", commit_data.get_dynamic_member_names())
 
