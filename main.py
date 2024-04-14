@@ -109,27 +109,9 @@ transport = wrapper.get_transport()
 # get speckle commit
 commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
 # get object id from commit
-if commit is not None and hasattr(commit, 'referencedObject'):
-    # get object id from commit
-    obj_id = commit.referencedObject
-    # receive objects from commit
+obj_id = commit.referencedObject
+# receive objects from commit
 commit_data = operations.receive(obj_id, transport)
-
-if commit_data is not None and hasattr(commit_data, 'get_dynamic_member_names'):
-    # get dynamic member names from commit data
-    dynamic_member_names = commit_data.get_dynamic_member_names()
-    selected_category = st.selectbox("Select category", dynamic_member_names)
-else:
-    print("Commit data is None or does not have a 'get_dynamic_member_names' method")
-if obj_id is not None and transport is not None:
-    # check if 'receive' method exists in operations
-    if hasattr(operations, 'receive'):
-        # receive objects from commit
-        commit_data = operations.receive(obj_id, transport)
-    else:
-        print("'receive' method does not exist in operations")
-else:
-    print("obj_id or transport is None")
 
 with input:
     selected_category = st.selectbox("Select category", commit_data.get_dynamic_member_names())
