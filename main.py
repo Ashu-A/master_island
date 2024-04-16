@@ -1,4 +1,3 @@
-# Install requirements
 import streamlit as st
 import pandas as pd
 from pandasai.llm.openai import OpenAI
@@ -9,8 +8,8 @@ from specklepy.api.credentials import get_account_from_token
 import plotly.express as px
 from dotenv import load_dotenv
 from specklepy.api import operations
-import plotly.express as px
 from pandasai import SmartDataframe
+
 
 # Load the .env file
 load_dotenv()
@@ -20,16 +19,13 @@ st.set_page_config(
     page_title="Island Chatbot",
     page_icon="🏝️",
 )
-# OpenAI chat function
+
 def chat_speckle(df, prompt):
-    # openai_api_token = os.getenv('OPENAI_API_TOKEN')
-    openai_api = os.getenv('OPENAI_API_TOKEN')
-    openai_api_token = st.secrets(openai_api)
+    openai_api_token = os.getenv('OPENAI_API_TOKEN')
     llm = OpenAI(api_token=openai_api_token)
     df = SmartDataframe(df, config={"llm": llm})
     result = df.chat(prompt)
-
-# Get parametet names
+    return result
 def get_parameter_names(commit_data, selected_category):
     parameters = commit_data[selected_category][0]["parameters"].get_dynamic_member_names()
     parameters_names = []
@@ -38,7 +34,6 @@ def get_parameter_names(commit_data, selected_category):
     parameters_names = sorted(parameters_names)
     return parameters_names
 
-# get parameter names
 def get_parameter_by_name(element, parameter_name, dict):
     for parameter in parameters:
         key = element["parameters"][parameter]["name"]
@@ -46,11 +41,12 @@ def get_parameter_by_name(element, parameter_name, dict):
             dict[key] = element["parameters"][parameter]["value"]
     return dict
 
+
 # container
 header = st.container()
 input = st.container()
-data = st.container()
 viewer = st.container()
+data = st.container()
 report = st.container()
 graphs = st.container()
 
@@ -62,10 +58,12 @@ with header:
 # Input
 with input:
     st.subheader('Inputs')
+
     # columns for input
     serverCol, tokenCol = st.columns([1, 3])
     speckleServer = serverCol.text_input('Speckle Server', 'https://speckle.xyz')
     speckleToken = tokenCol.text_input('Speckle Token', os.getenv('SPECKLE_TOKEN'))
+
     # client
     client = SpeckleClient(host=speckleServer)
     # get account from token
@@ -74,6 +72,7 @@ with input:
     client.authenticate_with_account(account)
     # streams list
     streams = client.stream.list()
+    # st.write(streams)
     # get streams names
     streamNames = [s.name for s in streams]
     # dropdown for stream selection
@@ -101,13 +100,7 @@ client = wrapper.get_client()
 # trasnport
 transport = wrapper.get_transport()
 commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
-if hasattr(commit, 'referencedObject'):
-    obj_id = commit.referencedObject
-else:
-    # Handle the case where referencedObject is not present
-    # For example, set obj_id to None or provide a default value
-    obj_id = None
-
+obj_id = commit.referencedObject
 commit_data = operations.receive(obj_id, transport)
 
 with input:
@@ -151,9 +144,10 @@ with viewer:
             st.write("No commits available for the selected branch.")
     else:
         st.write("No commits available for the selected stream.")
-
 with input:
+    # st.subheader("Commit URL of the below model")
     fetch_commitUrl = f"https://speckle.xyz/streams/{stream.id}/commits/{selected_commit.id}"
+    # st.write(fetch_commitUrl)
 
 with data:
     st.subheader("Data")
@@ -168,7 +162,6 @@ with data:
     col1, col2 = st.columns([1, 1])
     with col1:
         result = st.dataframe(result_DF)
-
     with col2:
         st.info("How can I help you?")
         OPENAI_API_KEY = st.text_input('OpenAI key', "sk-...vDlY")
@@ -180,10 +173,7 @@ with data:
                 result = chat_speckle(result_DF, input_text)
                 st.success(result)
 
-
-
-
-# # Report
+# Report
 with report:
     st.subheader('Report')
     # Display some information about the selected stream and branch
@@ -191,6 +181,7 @@ with report:
     st.write(f"Commit URL of the model is {fetch_commitUrl}")
     if branchNames:
         st.write(f"Selected Branch: {bName}")
+    # Add more reporting functionalities as needed
 
 # Footer
 st.markdown(
