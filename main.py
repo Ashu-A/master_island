@@ -107,7 +107,7 @@ if commit is not None and hasattr(commit, 'referencedObject'):
 else:
     # Handle the case where commit is None or doesn't have referencedObject
     st.error("Error retrieving commit data. Please check your input.")
-commit_data = operations.receive(obj_id, transport)
+# commit_data = operations.receive(obj_id, transport)
 
 with input:
     selected_category = st.selectbox("Select category", commit_data.get_dynamic_member_names())
