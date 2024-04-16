@@ -1,4 +1,4 @@
-
+# Install requirements
 import streamlit as st
 import pandas as pd
 from pandasai.llm.openai import OpenAI
@@ -6,24 +6,28 @@ import os
 from specklepy.api.wrapper import StreamWrapper
 from specklepy.api.client import SpeckleClient
 from specklepy.api.credentials import get_account_from_token
-from specklepy.api import operations
 import plotly.express as px
+from dotenv import load_dotenv
+from specklepy.api import operations
 import plotly.express as px
 from pandasai import SmartDataframe
 
+# Load the .env file
+load_dotenv()
 
+# Page configuration
+st.set_page_config(
+    page_title="Island Chatbot",
+    page_icon="🏝️",
+)
+# OpenAI chat function
 def chat_speckle(df, prompt):
-    # llm = OpenAI(api_token="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")
-    llm = OpenAI(api_token="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")
-    # pandas_ai = PandasAI(llm, conversational=False)
+    openai_api_token = os.getenv('OPENAI_API_TOKEN')
+    llm = OpenAI(api_token=openai_api_token)
     df = SmartDataframe(df, config={"llm": llm})
     result = df.chat(prompt)
-    print(result)
 
-    return result
-
-
-
+# Get parametet names
 def get_parameter_names(commit_data, selected_category):
     parameters = commit_data[selected_category][0]["parameters"].get_dynamic_member_names()
     parameters_names = []
@@ -32,8 +36,7 @@ def get_parameter_names(commit_data, selected_category):
     parameters_names = sorted(parameters_names)
     return parameters_names
 
-
-
+# get parameter names
 def get_parameter_by_name(element, parameter_name, dict):
     for parameter in parameters:
         key = element["parameters"][parameter]["name"]
@@ -41,7 +44,7 @@ def get_parameter_by_name(element, parameter_name, dict):
             dict[key] = element["parameters"][parameter]["value"]
     return dict
 
-
+# container
 header = st.container()
 input = st.container()
 data = st.container()
@@ -49,55 +52,45 @@ viewer = st.container()
 report = st.container()
 graphs = st.container()
 
+# Header
 with header:
     st.title('Island Chatbot')
-    st.info('Hi I am ..... and I will help you to chat with the Island Team Revit model and I am using Speckle and OpenAI')
+    st.info('Hi I am ..... and I am developed by team Island to extract and interact with the data from the revit model.')
 
-
+# Input
 with input:
     st.subheader('Inputs')
-    commit_url = st.text_input('Commit URL', "https://speckle.xyz/streams/06564bda95/commits/f308ed526e")
+    # columns for input
     serverCol, tokenCol = st.columns([1, 3])
-    speckleServer = serverCol.text_input("Server URL", "speckle.xyz", help="Speckle server to connect.")
-    speckleToken = tokenCol.text_input("Speckle token", "1c85ef40568298221924a2feca4e1eb2c42bf0c3a6")
+    speckleServer = serverCol.text_input('Speckle Server', 'https://speckle.xyz')
+    speckleToken = tokenCol.text_input('Speckle Token', os.getenv('SPECKLE_TOKEN'))
+    # client
     client = SpeckleClient(host=speckleServer)
-    # Get account from Token
+    # get account from token
     account = get_account_from_token(speckleToken, speckleServer)
-    # Authenticate
+    # authenciaction
     client.authenticate_with_account(account)
-
-    # Streams List👇
+    # streams list
     streams = client.stream.list()
-    # Get Stream Names
+    # get streams names
     streamNames = [s.name for s in streams]
-    # Dropdown for stream selection
-    sName = st.selectbox(label="Select your stream", options=streamNames, help="Select your stream from the dropdown")
-    # SELECTED STREAM
+    # dropdown for stream selection
+    sName = st.selectbox('Select Stream', options=streamNames)
+    # selected stream only
     stream = client.stream.search(sName)[0]
-    # Stream Branches 🌴
+    # stream branches
     branches = client.branch.list(stream.id)
-    # Stream Commits 🏹
+    branchNames = [b.name for b in branches]
+
+    # Check if the stream has multiple branches
+    if len(branchNames) > 1:
+        bName = st.selectbox('Select Branch', options=branchNames)
+    else:
+        bName = branchNames[0] if branchNames else None
+
+    # stream commits
     commits = client.commit.list(stream.id, limit=100)
-
-
-    def listToMarkdown(list, column):
-        list = ["- " + i + " \n" for i in list]
-        list = "".join(list)
-        return column.markdown(list)
-
-
-    # create a definition that creates iframe from commit id
-    def commit2viewer(stream, commit, height=400) -> str:
-        embed_src = "https://speckle.xyz/embed?stream=" + stream.id + "&commit=" + commit.id
-        return st.components.v1.iframe(src=embed_src, height=height)
-
-
-
-
-with viewer:
-    st.subheader("Latest Commit")
-    commit2viewer(stream, commits[0])
-
+    commit_url = st.text_input('Commit URL', "https://speckle.xyz/streams/06564bda95/commits/f308ed526e")
 
 # wrapper
 wrapper = StreamWrapper(commit_url)
@@ -105,17 +98,12 @@ wrapper = StreamWrapper(commit_url)
 client = wrapper.get_client()
 # trasnport
 transport = wrapper.get_transport()
-
-# get speckle commit
 commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
-# get object id from commit
 obj_id = commit.referencedObject
-# receive objects from commit
 commit_data = operations.receive(obj_id, transport)
 
 with input:
     selected_category = st.selectbox("Select category", commit_data.get_dynamic_member_names())
-
 # parameters
 parameters = commit_data[selected_category][0]["parameters"].get_dynamic_member_names()
 
@@ -127,6 +115,38 @@ with input:
 
 category_elements = commit_data[selected_category]
 
+# Definations
+def commit2viewer(stream, commit, branch_name=None):
+    if branch_name:
+        embed_src = "https://speckle.xyz/embed?stream=" + stream.id + "&commit=" + commit.id + "&branch=" + branch_name
+    else:
+        embed_src = "https://speckle.xyz/embed?stream=" + stream.id + "&commit=" + commit.id
+    print("Embed URL:", embed_src)  # Debugging statement
+    return st.components.v1.iframe(src=embed_src, height=400, width=600)
+
+with viewer:
+    st.subheader('Viewer')
+    if commits:
+        selected_commit = None
+        for commit in commits:
+            if getattr(commit, "branchName", None) == bName:
+                selected_commit = commit
+                break
+
+        if selected_commit:
+            # Generate URL for the Speckle viewer
+            embed_src = f"https://speckle.xyz/embed?stream={stream.id}&commit={selected_commit.id}"
+
+            # Display the viewer in an iframe
+            st.components.v1.iframe(src=embed_src, height=600, width=800)
+        else:
+            st.write("No commits available for the selected branch.")
+    else:
+        st.write("No commits available for the selected stream.")
+
+with input:
+    fetch_commitUrl = f"https://speckle.xyz/streams/{stream.id}/commits/{selected_commit.id}"
+
 with data:
     st.subheader("Data")
     result_data = []
@@ -136,14 +156,13 @@ with data:
             get_parameter_by_name(element, s_param, dict)
         result_data.append(dict)
     result_DF = pd.DataFrame.from_dict(result_data)
-
     # show dataframe and add chatSpeckle feature
     col1, col2 = st.columns([1, 1])
     with col1:
         result = st.dataframe(result_DF)
 
     with col2:
-        st.info("⬇chatSpeckle⬇")
+        st.info("How can I help you?")
         OPENAI_API_KEY = st.text_input('OpenAI key', "sk-...vDlY")
 
         input_text = st.text_area('Enter your query')
@@ -152,3 +171,23 @@ with data:
                 st.info('Your query:' + input_text)
                 result = chat_speckle(result_DF, input_text)
                 st.success(result)
+
+
+
+
+# # Report
+with report:
+    st.subheader('Report')
+    # Display some information about the selected stream and branch
+    st.write(f"Selected Stream: {stream.name}")
+    st.write(f"Commit URL of the model is {fetch_commitUrl}")
+    if branchNames:
+        st.write(f"Selected Branch: {bName}")
+
+# Footer
+st.markdown(
+    """
+    ---
+    Made with ❤️ by Island Team developed by [Ashish](https://ashu-a.github.io/ashish_ranjan/)
+    """
+)
