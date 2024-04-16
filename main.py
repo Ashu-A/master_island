@@ -100,7 +100,12 @@ client = wrapper.get_client()
 # trasnport
 transport = wrapper.get_transport()
 commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
-obj_id = commit.referencedObject
+try:
+    obj_id = commit.referencedObject
+except AttributeError:
+    # Handle the case where 'referencedObject' attribute is not present
+    obj_id = None  # Or any default value you want to assign
+    print("Warning: 'referencedObject' attribute not found in commit.")
 commit_data = operations.receive(obj_id, transport)
 
 with input:
