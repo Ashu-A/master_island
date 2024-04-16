@@ -91,7 +91,7 @@ with input:
 
     # stream commits
     commits = client.commit.list(stream.id, limit=100)
-    commit_url = st.text_input('Commit URL', "https://speckle.xyz/streams/2e8925eda6/commits/57ef24894a")
+    commit_url = st.text_input('Commit URL', "https://speckle.xyz/streams/06564bda95/commits/f308ed526e")
 
 # wrapper
 wrapper = StreamWrapper(commit_url)
@@ -105,6 +105,7 @@ commit_data = operations.receive(obj_id, transport)
 
 with input:
     selected_category = st.selectbox("Select category", commit_data.get_dynamic_member_names())
+
 # parameters
 parameters = commit_data[selected_category][0]["parameters"].get_dynamic_member_names()
 
