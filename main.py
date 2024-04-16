@@ -100,14 +100,8 @@ client = wrapper.get_client()
 # trasnport
 transport = wrapper.get_transport()
 commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
-# Check if commit is not None and if it has the referencedObject attribute
-if commit is not None and hasattr(commit, 'referencedObject'):
-    obj_id = commit.referencedObject
-    commit_data = operations.receive(obj_id, transport)
-else:
-    # Handle the case where commit is None or doesn't have referencedObject
-    st.error("Error retrieving commit data. Please check your input.")
-# commit_data = operations.receive(obj_id, transport)
+obj_id = commit.referencedObject
+commit_data = operations.receive(obj_id, transport)
 
 with input:
     selected_category = st.selectbox("Select category", commit_data.get_dynamic_member_names())
