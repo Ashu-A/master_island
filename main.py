@@ -91,7 +91,7 @@ with input:
 
     # stream commits
     commits = client.commit.list(stream.id, limit=100)
-    commit_url = st.text_input('Commit URL', "https://speckle.xyz/streams/06564bda95/commits/f308ed526e")
+    commit_url = st.text_input('Commit URL', "https://speckle.xyz/streams/2e8925eda6/commits/57ef24894a")
 
 # wrapper
 wrapper = StreamWrapper(commit_url)
