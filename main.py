@@ -99,7 +99,13 @@ client = wrapper.get_client()
 # trasnport
 transport = wrapper.get_transport()
 commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
-obj_id = commit.referencedObject
+if hasattr(commit, 'referencedObject'):
+    obj_id = commit.referencedObject
+else:
+    # Handle the case where referencedObject is not present
+    # For example, set obj_id to None or provide a default value
+    obj_id = None
+
 commit_data = operations.receive(obj_id, transport)
 
 with input:
