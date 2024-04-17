@@ -100,6 +100,8 @@ client = wrapper.get_client()
 # trasnport
 transport = wrapper.get_transport()
 commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
+print(dir(commit))
+# obj_id = commit.referencedObject
 obj_id = commit.referencedObject
 commit_data = operations.receive(obj_id, transport)
 
@@ -123,7 +125,7 @@ def commit2viewer(stream, commit, branch_name=None):
         embed_src = "https://speckle.xyz/embed?stream=" + stream.id + "&commit=" + commit.id + "&branch=" + branch_name
     else:
         embed_src = "https://speckle.xyz/embed?stream=" + stream.id + "&commit=" + commit.id
-    print("Embed URL:", embed_src)  # Debugging statement
+    # print("Embed URL:", embed_src)  # Debugging statement
     return st.components.v1.iframe(src=embed_src, height=400, width=600)
 
 with viewer:
