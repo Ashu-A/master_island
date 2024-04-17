@@ -96,12 +96,14 @@ with input:
 # wrapper
 wrapper = StreamWrapper(commit_url)
 # client
-client = wrapper.get_client()
+client = SpeckleClient(host='https://speckle.xyz')
+client.authenticate_with_token(speckleToken)
 # trasnport
 transport = wrapper.get_transport()
 commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
-print(dir(commit))
+# print(dir(commit))
 obj_id = commit.referencedObject
+# print(obj_id)
 commit_data = operations.receive(obj_id, transport)
 
 with input:
