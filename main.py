@@ -101,7 +101,7 @@ client = wrapper.get_client()
 transport = wrapper.get_transport()
 commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
 print(dir(commit))
-obj_id = commit
+obj_id = commit.referencedObject
 commit_data = operations.receive(obj_id, transport)
 
 with input:
