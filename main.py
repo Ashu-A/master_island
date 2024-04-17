@@ -96,8 +96,7 @@ with input:
 # wrapper
 wrapper = StreamWrapper(commit_url)
 # client
-client = SpeckleClient('https://speckle.xyz') 
-client.authenticate_with_token(os.getenv('SPECKLE_TOKEN'))
+client = wrapper.get_client()
 # trasnport
 transport = wrapper.get_transport()
 commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
