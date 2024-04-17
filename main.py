@@ -10,31 +10,7 @@ from dotenv import load_dotenv
 from specklepy.api import operations
 from pandasai import SmartDataframe
 
-if 'access_code' not in st.session_state:
-    st.session_state['access_code'] = None
-if 'token' not in st.session_state:
-    st.session_state['token'] = None
-if 'refresh_token' not in st.session_state:
-    st.session_state['refresh_token'] = None
-if 'Building' not in st.session_state:
-    st.session_state['Building'] = None
-if 'Apertures' not in st.session_state:
-    st.session_state['Apertures'] = None
-if 'Shading' not in st.session_state:
-    st.session_state['Shading'] = None
-if 'hbjson' not in st.session_state:
-    st.session_state['hbjson'] = None
-if 'daylight_job' not in st.session_state:
-    st.session_state['daylight_job'] = None
-if 'energyanalysis_job' not in st.session_state:
-    st.session_state['energyanalysis_job'] = None
 
-# Try to retrieve the access code from query parameters
-try:
-    access_code = st.experimental_get_query_params()['access_code'][0]
-    st.session_state['access_code'] = access_code
-except KeyError:
-    pass  # Query parameter 'access_code' not found, do nothing
 # Load the .env file
 load_dotenv()
 
