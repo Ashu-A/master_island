@@ -31,7 +31,12 @@ try:
     streams = client.stream.list()
     streamNames = [s.name for s in streams]
     sName = st.selectbox('Select Stream', options=streamNames)
-    stream = client.stream.search(sName)[0]
+    # Check if a stream is selected
+    if sName:
+        stream = client.stream.search(sName)[0]
+    else:
+        st.error("No stream selected.")
+        stream = None
 except Exception as e:
     # Handle any errors that occur during stream retrieval
     st.error(f"An error occurred while retrieving streams: {e}")
