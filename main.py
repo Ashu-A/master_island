@@ -102,7 +102,14 @@ client = wrapper.get_client()
 client.authenticate_with_account(account)
 # trasnport
 transport = wrapper.get_transport()
-commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
+try:
+    commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
+    obj_id = commit.referencedObject
+    commit_data = operations.receive(obj_id, transport)
+except Exception as e:
+    # Handle any errors that occur during commit retrieval
+    st.error(f"An error occurred while retrieving commit data: {e}")
+    commit_data = None
 # print(dir(commit))
 obj_id = commit.referencedObject
 # print(obj_id)
