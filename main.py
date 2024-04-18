@@ -27,12 +27,15 @@ client = SpeckleClient(host=speckleServer)
 client.authenticate_with_token(speckleToken)
 
 # Streams list
-streams = client.stream.list()
-
-streamNames = [s.name for s in streams]
-sName = st.selectbox('Select Stream', options=streamNames)
-
-stream = client.stream.search(sName)[0]
+try:
+    streams = client.stream.list()
+    streamNames = [s.name for s in streams]
+    sName = st.selectbox('Select Stream', options=streamNames)
+    stream = client.stream.search(sName)[0]
+except Exception as e:
+    # Handle any errors that occur during stream retrieval
+    st.error(f"An error occurred while retrieving streams: {e}")
+    stream = None
 
 # Stream branches
 branches = client.branch.list(stream.id)
