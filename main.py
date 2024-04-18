@@ -98,7 +98,8 @@ account = get_account_from_token(speckleToken, speckleServer)
 # wrapper
 wrapper = StreamWrapper(commit_url)
 # client
-client = wrapper.get_client(account=account)
+client = wrapper.get_client()
+client.authenticate_with_account(account)
 # trasnport
 transport = wrapper.get_transport()
 commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
