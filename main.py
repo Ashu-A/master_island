@@ -91,12 +91,14 @@ with input:
 
     # stream commits
     commits = client.commit.list(stream.id, limit=100)
+
     commit_url = st.text_input('Commit URL', "https://speckle.xyz/streams/06564bda95/commits/f308ed526e")
 
+account = get_account_from_token(speckleToken, speckleServer)
 # wrapper
 wrapper = StreamWrapper(commit_url)
 # client
-client = wrapper.get_client()
+client = wrapper.get_client(account=account)
 # trasnport
 transport = wrapper.get_transport()
 commit = client.commit.get(wrapper.stream_id, wrapper.commit_id)
