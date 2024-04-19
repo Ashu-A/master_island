@@ -1,8 +1,6 @@
 import streamlit as st
 from specklepy.api.client import SpeckleClient
 from specklepy.api.credentials import get_account_from_token
-import pandas as pd
-import plotly.express as px
 from dotenv import load_dotenv
 import os
 
@@ -13,9 +11,7 @@ load_dotenv()
 
 st.set_page_config(
     page_title="Island Chatbot",
-    page_icon="🏝️",#windows+.
-    # layout="wide",
-    # initial_sidebar_state="expanded",
+    page_icon="🏝️",
 )
 
 # container
@@ -67,7 +63,6 @@ with input:
 
     # stream commits
     commits = client.commit.list(stream.id, limit=100)
-    commit_url = st.text_input('Commit URL', "https://speckle.xyz/streams/06564bda95/commits/f308ed526e")
 
 # Definations
 def commit2viewer(stream, commit, branch_name=None):
@@ -77,28 +72,15 @@ def commit2viewer(stream, commit, branch_name=None):
         embed_src = "https://speckle.xyz/embed?stream=" + stream.id + "&commit=" + commit.id
     print("Embed URL:", embed_src)  # Debugging statement
     return st.components.v1.iframe(src=embed_src, height=400, width=600)
-# Viewers
-# with viewer:
-#     st.subheader('Viewer')
-#     if commits:
-#         print("Selected Branch:", bName)  # Debugging statement
-#         commit2viewer(stream, commits[0], branch_name=bName)
-#     else:
-# Viewers
+
 with viewer:
     st.subheader('Viewer')
     if commits:
-        # Print out type and attributes of the stream object
-        # st.write("Stream type:", type(stream))
-        # st.write("Stream attributes:", stream.__dict__)
-
-        # Find the commit corresponding to the selected branch
         selected_commit = None
         for commit in commits:
             if getattr(commit, "branchName", None) == bName:
                 selected_commit = commit
                 break
-
         if selected_commit:
             # Generate URL for the Speckle viewer
             embed_src = f"https://speckle.xyz/embed?stream={stream.id}&commit={selected_commit.id}"
@@ -110,32 +92,20 @@ with viewer:
     else:
         st.write("No commits available for the selected stream.")
 
-
-
-
-
-
 # # Report
 with report:
     st.subheader('Report')
-
     # Display some information about the selected stream and branch
     st.write(f"Selected Stream: {stream.name}")
     if branchNames:
         st.write(f"Selected Branch: {bName}")
-
     # Add more reporting functionalities as needed
 
-# Graphs
-with graphs:
-    st.subheader('Graphs')
-
-    # Add graph generation code using Plotly Express or any other library as needed
 
 # Footer
 st.markdown(
     """
     ---
-    Made with ❤️ by [Island Team](https://islandteam.com)
+    Made with ❤️ by Island Team developed by [Ashish](https://ashu-a.github.io/ashish_ranjan/)
     """
 )
